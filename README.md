@@ -5,3 +5,6 @@ The purpose of this project is to develop and refine the skills of implementing 
 
 Our goals for this project include creating a release deliverable that users can interact with, and easily obtain their desired output. In our case, output would be sentences that are developed from the training data. We also want to better understand the stochastic process behind the Markov Process, to better apply it on our models and project.
 
+## Running The Code
+
+To run the code, create a server on port 3000 or port 8000. If using python 2.7, run `python -m SimpleHTTPServer` to create a server, and go to `localhost:8000` or `localhost:3000` to ope the markov.html file.
