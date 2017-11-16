@@ -11,5 +11,5 @@ Requirements:
 Python 3.0 or greater  
 install flask for your python (sudo pip3 install flask) 
 
-Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator. 
+Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator.   
 For v.01 click on Login With Facebook Button. It will redirect you to login with facebook which will allow us to get your timeline posts. 
