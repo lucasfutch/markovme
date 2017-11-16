@@ -7,4 +7,9 @@ Our goals for this project include creating a release deliverable that users can
 
 ## Running The Code
 
-To run the code, create a server on port 3000 or port 8000. If using python 2.7, run `python -m SimpleHTTPServer` to create a server, and go to `localhost:8000` or `localhost:3000` to ope the markov.html file.
+Requirements:
+Python 3.0 or greater
+install flask for your python (sudo pip3 install flask) 
+
+Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator. 
+For v.01 click on Login With Facebook Button. It will redirect you to login with facebook which will allow us to get your timeline posts. 
