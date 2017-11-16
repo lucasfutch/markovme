@@ -8,7 +8,7 @@ Our goals for this project include creating a release deliverable that users can
 ## Running The Code
 
 Requirements:
-Python 3.0 or greater
+Python 3.0 or greater  
 install flask for your python (sudo pip3 install flask) 
 
 Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator. 
