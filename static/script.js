@@ -85,6 +85,14 @@ $(document).ready(function(){
 	$("#getDataInputButton").click(function(){
 		$("#mainText").html("");
   		$("#loading").html("");
+  		$.ajax({
+		    url: "/upload",
+		    type: "GET",
+		    // data: JSON.stringify({x: userMessages}),
+		    // contentType: "application/json; charset=utf-8",
+		    success: function(dat) { $("#mainText").html(dat) },
+		    error: function(e) {console.log(e);}
+		});
 	});
 
 	$("#getDataMessengerButton").click(function(){
