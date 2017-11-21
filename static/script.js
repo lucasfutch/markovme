@@ -4,6 +4,7 @@ function myFacebookLogin() {
 	console.log("Logging in");
 	FB.login(function(){
 		console.log("Logged in successfully!")
+		$("#mainText").append("<p>You have successfully logged in!</p>");
 	}, {scope: 'user_posts'});
 }
 
@@ -12,6 +13,10 @@ function myFacebookData() {
 
 	FB.api("/me/posts",
     function (response) {
+    	if (response.error) {
+    		$("#mainText").append("<p>Please login first.</p>");
+    		$("#loading").html("");
+    	}
       	if (response && !response.error) {
       		console.log(response);
       		for (var i = 0; i < response.data.length; i++) {
@@ -42,12 +47,12 @@ function Paginate(nextPage) {
       			}
       		}
 
-			userMessages.push(response);
 			if (response.data.length != 0 && response.paging.next) {
 				Paginate(response.paging.next);
 			}
 			else {
 				console.log("DONE!");
+				$("#loading").html("");
 				$.ajax({
 				    url: "/list",
 				    type: "POST",
@@ -64,11 +69,27 @@ function Paginate(nextPage) {
 
 $(document).ready(function(){
 
-  $("#loginButton").click(function(){
-  	  myFacebookLogin();
-  });
-  $("#getDataButton").click(function(){
-  	  myFacebookData();
-  });
+	$("#loginFBButton").click(function(){
+  		$("#mainText").html("");
+  		$("#loading").html("");
+  		myFacebookLogin();
+	});
+
+	$("#getDataFBButton").click(function(){
+  		$("#mainText").html("");
+  		$("#loading").html("");
+  		$("#mainText").append("<p id = 'loading'>LOADING POSTS...<br></p>");
+  		myFacebookData();
+	});
+
+	$("#getDataInputButton").click(function(){
+		$("#mainText").html("");
+  		$("#loading").html("");
+	});
+
+	$("#getDataMessengerButton").click(function(){
+		$("#mainText").html("");
+  		$("#loading").html("");
+	});
 
 });

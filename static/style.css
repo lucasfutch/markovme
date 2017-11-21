@@ -1,20 +1,20 @@
 body{
 	margin: 0;
 	padding: 0;
-	background-color: black;
+	background-color: #2a4e6c;
 	font-family: 'Proxima Nova', Geneva, Verdana, Arial, sans-serif;
 	font-size: 16px;
 }
 
 button {
-    background: #4162a8;
-    border-top: 1px solid #38538c;
-    border-right: 1px solid #1f2d4d;
-    border-bottom: 1px solid #151e33;
-    border-left: 1px solid #1f2d4d;
+    background: #43464B;
+    border-top: 1px solid #1B1D1E;
+    border-right: 1px solid #1B1D1E;
+    border-bottom: 1px solid #1B1D1E;
+    border-left: 1px solid #1B1D1E;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
-    box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+    box-shadow: inset 0 1px 10px 1px #1B1D1E, 0 1px 0 #1B1D1E, 0 6px 0 #1B1D1E, 0 8px 4px 1px #1B1D1E;
     color: #fff;
     font: bold 20px/1 "helvetica neue", helvetica, arial, sans-serif;
     margin-bottom: 10px;
@@ -24,8 +24,9 @@ button {
     padding: 10px 0 12px 0;
     text-align: center;
     text-shadow: 0 -1px 1px #1e2d4d;
-    width: 200px;
+    width: 270px;
     -webkit-background-clip: padding-box;
+    display: inline-block;
 }
 
 #top {
@@ -36,10 +37,10 @@ button {
 	font-size: 16px;
 	color: white;
 	text-align: center;
-/*	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 20px;
-	margin-right: 20px;*/
-	display: inline-block;
-	/*vertical-align: middle;*/
+	display: block;
+}
+
+#loading {
+    font-size: 20px;
+    color: white;
 }

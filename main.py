@@ -13,7 +13,7 @@ def index():
 def getFBArray():
    	data = request.get_json()
 	x = data['x']
-	print x
+	print(x)
    	return "Data in Python"
 
 
