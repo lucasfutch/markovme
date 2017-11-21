@@ -4,7 +4,9 @@
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width">
 		<title>MarkovMe</title>
-		<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../static/style.css" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 		<script>
@@ -26,11 +28,16 @@
 		}(document, 'script', 'facebook-jssdk'));
 		</script>
 
+		<div id = "top">
+			<button id = 'loginButton'>Login with Facebook</button>
+			<button id = 'getDataButton'>Get Data</button>
+		</div>
 
-		<button onclick="myFacebookLogin()">Login with Facebook</button>
-		<button onclick="myFacebookData()">Get Data</button>
+		<p id = "mainText"></p>
 		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 		<script src="../static/script.js"></script>
+		
 	</body>
 </html>
