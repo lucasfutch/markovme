@@ -2,10 +2,14 @@ userMessages = [];
 
 function myFacebookLogin() {
 	console.log("Logging in");
-	FB.login(function(){
-		console.log("Logged in successfully!")
+	FB.login(function(response){
+		if (response.authResponse) {
+     		var access_token =   FB.getAuthResponse()['accessToken'];
+     		console.log("Access Token")
+     		console.log(access_token)
+			console.log("Logged in successfully!")
 		$("#mainText").append("<p>You have successfully logged in!</p>");
-	}, {scope: 'user_posts'});
+	}}, {scope: 'user_posts'});
 }
 
 function myFacebookData() {
@@ -19,6 +23,9 @@ function myFacebookData() {
     	}
       	if (response && !response.error) {
       		console.log(response);
+      		if (response.data.length < 1 ){
+      			$("#mainText").append("<p>Sorry, we were not able to get permission to get access to your facebook posts. Facebook is still reiewing our app.</p>");
+			}
       		for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
       				$("#mainText").append("<p>" + response.data[i].message + "</p>");
@@ -83,7 +90,9 @@ $(document).ready(function(){
 	});
 
 	$("#getDataInputButton").click(function(){
-		$("#mainText").html("");
+		//$("#mainText").html("");
+		$("#mainText").append("<p>Implementation in progress.</p>");
+		//$("#mainText").append("<p> Implementation in progress.</p>");
   		$("#loading").html("");
   		$.ajax({
 		    url: "/upload",
