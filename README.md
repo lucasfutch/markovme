@@ -13,3 +13,7 @@ install flask for your python (sudo pip3 install flask)
 
 Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator.   
 For v.01 click on Login With Facebook Button. It will redirect you to login with facebook which will allow us to get your timeline posts. 
+
+## New Additions
+
+When you open the page, you are greeted with four buttons to press. Login with Facebook to be able to pull your posts, done with the second button and which displays the posts. The third button provides a document upload form, which is intended to accept text files of data to be analyzed.
