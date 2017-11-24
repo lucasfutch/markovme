@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os
 from werkzeug.utils import secure_filename
-import markovify
+#import markovify
 
 from flask import Flask
 
@@ -62,8 +62,8 @@ def getFBArray():
         text = text+post
         text = text+'\n'
     #the next two lines of code will generate new sentences using markov chains.
-    text_model = markovify.Text(text)
-    print(text_model.make_sentence())
+    # text_model = markovify.Text(text)
+    # print(text_model.make_sentence())
     return "Data in Python"
 
 
@@ -72,4 +72,6 @@ def getFBArray():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8000)
+
+
