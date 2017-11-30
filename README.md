@@ -21,4 +21,4 @@ When you open the page, you are greeted with four buttons to press. Login with F
 
 ## v.03
 
-Finally, the app is approved by Facebook. We still have four buttons. Login with Facebook will ask you to login with your facebook and ask permission to allows us to use your timeline posts. Press OK to give us the permissions. Then you can click the Get My Predicted Posts. It will take couple of seconds for us to collect your facebook posts. After that you will be presented with your predicted post on the webpage. 
+Finally, the app is approved by Facebook. We still have four buttons. Login with Facebook will ask you to login with your facebook and ask permission to allows us to use your timeline posts. Press OK to give us the permissions. Then you can click the Get My Predicted Posts button. It will take couple of seconds for us to collect your facebook posts. After that you will be presented with your predicted post on the webpage. 
