@@ -28,7 +28,7 @@ function myFacebookData() {
 			}
       		for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				$("#mainText").append("<p>" + response.data[i].message + "</p>");
+      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
@@ -49,7 +49,7 @@ function Paginate(nextPage) {
 
 			for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				$("#mainText").append("<p>" + response.data[i].message + "</p>");
+      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
@@ -65,7 +65,7 @@ function Paginate(nextPage) {
 				    type: "POST",
 				    data: JSON.stringify({x: userMessages}),
 				    contentType: "application/json; charset=utf-8",
-				    success: function(dat) { console.log(dat); },
+				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
 				    error: function(e) {console.log(e);}
 				});
 			}

@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
 import os
 from werkzeug.utils import secure_filename
 import markovify
 
 from flask import Flask
+
+from MainTemplate import MainTemplate
+from facebookPosts import facebookPosts
 
 UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = set(['txt'])
@@ -55,16 +58,13 @@ def upload_file():
 @app.route('/list', methods=['GET', 'POST'])
 def getFBArray():
     data = request.get_json()
-    x = data['x']
-    print(x)
-    text=""
-    for post in x:
-        text = text+post
-        text = text+'\n'
-    #the next two lines of code will generate new sentences using markov chains.
-    text_model = markovify.Text(text)
-    print(text_model.make_sentence())
-    return "Data in Python"
+    #x = data['x']
+    #print(x)
+    fbpost = facebookPosts()
+    assert isinstance(fbpost, facebookPosts)
+    predicted_text = fbpost.PredictText(data)
+    #print(predicted_text)
+    return jsonify({'result': predicted_text})
 
 
 
@@ -73,3 +73,17 @@ def getFBArray():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
+
+def getFBArray():
+    data = request.get_json()
+    x = data['x']
+    print(x)
+    text=""
+    for post in x:
+        text = text+post
+        text = text+'\n'
+    #the next two lines of code will generate new sentences using markov chains.
+    text_model = markovify.Text(text)
+    predicted_text = text_model.make_sentence()
+    return jsonify({'result': predicted_text})
