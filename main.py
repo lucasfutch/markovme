@@ -57,7 +57,7 @@ def upload_file():
 @app.route('/list', methods=['GET', 'POST'])
 def getFBArray():
     data = request.get_json()
-    return jsonify({'result': "TEST POST PLEASE IGNORE"})
+    #return jsonify({'result': "TEST POST PLEASE IGNORE"})
     # x = data['x']
     # print(x)
     fbpost = facebookPosts()
