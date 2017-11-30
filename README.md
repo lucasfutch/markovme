@@ -9,11 +9,12 @@ Our goals for this project include creating a release deliverable that users can
 
 Requirements:
 Python 3.0 or greater  
-install flask for your python (sudo pip3 install flask) 
+install flask for your python (sudo pip3 install flask)  
+install markovify (sudo pip3 install markovify)
 
-Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator.   
+Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the makov text generator. 
+## v.01
 For v.01 click on Login With Facebook Button. It will redirect you to login with facebook which will allow us to get your timeline posts. 
 
-## New Additions
-
-When you open the page, you are greeted with four buttons to press. Login with Facebook to be able to pull your posts, done with the second button and which displays the posts. The third button provides a document upload form, which is intended to accept text files of data to be analyzed.
+## v.02
+When you open the page, you are greeted with four buttons to press. Login with Facebook to be able to pull your posts, done with the second button and which displays the posts. The third button provides a document upload form, which is intended to accept text files of data to be analyzed. This has been not implemented. Fourth button is intended to get data from your messenger. This also has not been implemented yet. 
