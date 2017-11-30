@@ -85,6 +85,7 @@ function Paginate(nextPage) {
 			else {
 				console.log("DONE!");
 				$("#loading").html("");
+				$("#loaderThing").hide();
 				$.ajax({
 				    url: "/list",
 				    type: "POST",
@@ -109,14 +110,12 @@ $(document).ready(function(){
 
 	$("#getDataFBButton").click(function(){
   		$("#mainText").html("");
-  		$("#mainText").append("<p id = 'loading'>LOADING POSTS...<br></p>");
+		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
   		myFacebookData();
 	});
 
 	$("#getDataInputButton").click(function(){
 		$("#getDataFBButton").hide();
-		// $("#mainText").html("");
-		// $("#mainText").append("<p>Implementation in progress.</p>");
   		$.ajax({
 		    url: "/upload",
 		    type: "GET",
