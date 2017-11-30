@@ -7,35 +7,33 @@
 		<link rel="stylesheet" type="text/css" href="../static/style.css" />
 		<link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 	</head>
 	<body>
-		<script>
-		window.fbAsyncInit = function() {
-		FB.init({
-		  appId            : 2000850609943113,
-		  autoLogAppEvents : true,
-		  xfbml            : true,
-		  version          : 'v2.11'
-		});
-		};
-
-		(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-				js = d.createElement(s); js.id = id;
-				js.src = "https://connect.facebook.net/en_US/sdk.js";
-				fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		</script>
-
 		<div id = "top">
-			<button id = 'loginFBButton'>Login with Facebook</button>
-			<button id = 'getDataFBButton'>Get Facebook Posts</button>
-			<button id = 'getDataInputButton'>Upload a Text File</button>
-			<button id = 'getDataMessengerButton'>Get Messenger Messages</button>
+			<img src="../static/icon.png" alt="Mountain View">
+			<h1 id = "title">MarkovMe</p>
+
 		</div>
 
-		<p id = "mainText"></p>
+		<div id = "middle">
+			<button id = 'loginFBButton' class = "topLeft aButton">Login with Facebook</button>
+			<button id = 'getDataInputButton' class = "topMiddle aButton">Upload a Text File</button>
+			<button id = 'getDataMessengerButton' class = "topRight aButton">Get Messenger Messages</button>
+			<button id = 'getDataFBButton' class = "aButton">Get My Predicted Post</button>
+			<p id = "mainText">TEST TEXT PLEASE IGNORE</p>
+		</div>
+
+		<div id = "bottom">
+			<p>About Us</p>
+			<p>Help</p>
+			<p>Privacy Policy</p>
+		</div>
+
+		<footer class="siteFooter" id = "floatingFooter"> 
+			<p class="footerText">Made by Krishna Gaire and Lucas Futch</p>
+		</footer>
+
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="../static/script.js"></script>

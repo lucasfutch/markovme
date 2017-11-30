@@ -1,3 +1,29 @@
+
+/////////////////////////////////////////////////////////////////////
+//// FB LOGIN FLOW //////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+window.fbAsyncInit = function() {
+FB.init({
+  appId            : 2000850609943113,
+  autoLogAppEvents : true,
+  xfbml            : true,
+  version          : 'v2.11'
+});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 userMessages = [];
 
 function myFacebookLogin() {
@@ -5,9 +31,8 @@ function myFacebookLogin() {
 	FB.login(function(response){
 		if (response.authResponse) {
      		var access_token =   FB.getAuthResponse()['accessToken'];
-     		console.log("Access Token")
-     		console.log(access_token)
 			console.log("Logged in successfully!")
+			$("#getDataFBButton").show();
 		$("#mainText").append("<p>You have successfully logged in!</p>");
 	}}, {scope: 'user_posts'});
 }
@@ -75,25 +100,23 @@ function Paginate(nextPage) {
 }
 
 $(document).ready(function(){
+	$("#getDataFBButton").hide();
 
-	$("#loginFBButton").click(function(){
+	$("#loginFBButton").click(function(){		
   		$("#mainText").html("");
-  		$("#loading").html("");
   		myFacebookLogin();
 	});
 
 	$("#getDataFBButton").click(function(){
   		$("#mainText").html("");
-  		$("#loading").html("");
   		$("#mainText").append("<p id = 'loading'>LOADING POSTS...<br></p>");
   		myFacebookData();
 	});
 
 	$("#getDataInputButton").click(function(){
-		//$("#mainText").html("");
-		$("#mainText").append("<p>Implementation in progress.</p>");
-		//$("#mainText").append("<p> Implementation in progress.</p>");
-  		$("#loading").html("");
+		$("#getDataFBButton").hide();
+		// $("#mainText").html("");
+		// $("#mainText").append("<p>Implementation in progress.</p>");
   		$.ajax({
 		    url: "/upload",
 		    type: "GET",
@@ -105,8 +128,8 @@ $(document).ready(function(){
 	});
 
 	$("#getDataMessengerButton").click(function(){
-		$("#mainText").html("");
-  		$("#loading").html("");
+		$("#getDataFBButton").hide();
+		$("#mainText").html("Coming soon!");
 	});
 
 });
