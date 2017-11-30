@@ -18,3 +18,7 @@ For v.01 click on Login With Facebook Button. It will redirect you to login with
 
 ## v.02
 When you open the page, you are greeted with four buttons to press. Login with Facebook to be able to pull your posts, done with the second button and which displays the posts. The third button provides a document upload form, which is intended to accept text files of data to be analyzed. This has been not implemented. Fourth button is intended to get data from your messenger. This also has not been implemented yet. 
+
+## v.03
+
+Finally, the app is approved by Facebook. We still have four buttons. Login with Facebook will ask you to login with your facebook and ask permission to allows us to use your timeline posts. Press OK to give us the permissions. Then you can click the Get My Predicted Posts. It will take couple of seconds for us to collect your facebook posts. After that you will be presented with your predicted post on the webpage. 
