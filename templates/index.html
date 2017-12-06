@@ -18,10 +18,11 @@
 
 		<div id = "middle">
 			<button id = 'loginFBButton' class = "topLeft aButton">Login with Facebook</button>
-			<button id = 'getDataInputButton' class = "topMiddle aButton">Upload a Text File</button>
+			<button id = 'getDataInputButton' class = "topMiddle aButton" onClick="showInputTextArea()">Input Text</button>
 			<button id = 'getDataMessengerButton' class = "topRight aButton">Get Messenger Messages</button>
 			<button id = 'getDataFBButton' class = "aButton">Get My Predicted Post</button>
-			<p id = "mainText">TEST TEXT PLEASE IGNORE</p>
+            <textarea name="inputText" class="inputText" id="inputText" rows="10" placeholder="Input your Text Here"></textarea>
+            <button id = 'submitTextButton' class = "submitTextButton aButton">Get My Predicted Text</button>
 		</div>
 
 		<div id = "bottom">

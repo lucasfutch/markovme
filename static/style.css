@@ -76,7 +76,6 @@ img {
 	display: block;
 }
 
-
 #bottom {
     margin: 0 1.5%;
     float: left;
@@ -116,3 +115,19 @@ p.footerText {
 }
 /*-----------------------*/
 /*-----------------------*/
+
+.inputText {
+    width: 90%;
+    display: none;
+    margin-top:10px;
+    border: 3px solid;
+    margin-left:5%;
+    margin-right:-5%;
+}
+
+.submitTextButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+

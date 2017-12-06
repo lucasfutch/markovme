@@ -100,6 +100,25 @@ function Paginate(nextPage) {
 	)
 }
 
+function showInputTextArea(){
+	document.getElementById('inputText').style.display = "block";
+	document.getElementById('submitTextButton').style.display = "block";
+}
+
+function getPredictedText(){
+    var input_Text = document.getElementById("inputText").value;
+    //console.log(inputText);
+    $("#loading").html("");
+    $("#loaderThing").hide();
+    	$.ajax({
+				    url: "/inputText",
+				    type: "POST",
+				    data: JSON.stringify({x: input_Text}),
+				    contentType: "application/json; charset=utf-8",
+				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
+				    error: function(e) {console.log(e);}
+				});
+}
 $(document).ready(function(){
 	$("#getDataFBButton").hide();
 
@@ -114,17 +133,12 @@ $(document).ready(function(){
   		myFacebookData();
 	});
 
-	$("#getDataInputButton").click(function(){
-		$("#getDataFBButton").hide();
-  		$.ajax({
-		    url: "/upload",
-		    type: "GET",
-		    // data: JSON.stringify({x: userMessages}),
-		    // contentType: "application/json; charset=utf-8",
-		    success: function(dat) { $("#mainText").html(dat) },
-		    error: function(e) {console.log(e);}
-		});
+	$("#submitTextButton").click(function(){
+  		$("#mainText").html("");
+		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
+  		getPredictedText();
 	});
+
 
 	$("#getDataMessengerButton").click(function(){
 		$("#getDataFBButton").hide();
