@@ -129,7 +129,6 @@ function myInputData(){
 	});
 }
 
-
 function hideButtons() {
 
 	$("#getDataFBButton").hide();

@@ -108,10 +108,32 @@ img {
 
 
 
+/*-----------------------*/
+/*        LINKS          */
+/*-----------------------*/
+a {
+    margin-top: 10px;
+}
+
+a:link, a:visited{
+    color: white;
+    background-color: black;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: blue;
+    background-color: white;
+    text-decoration: underline;
+}
+/*-----------------------*/
+/*-----------------------*/
 
 
 
-
+/*-----------------------*/
+/*        LOADER         */
+/*-----------------------*/
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -120,7 +142,7 @@ img {
     height: 20px;
     display: block;
     text-align: center;
-    margin: 0 auto;    
+    margin: 50px auto;    
     animation: spin 2s linear infinite;
 }
 
@@ -128,6 +150,9 @@ img {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/*-----------------------*/
+/*-----------------------*/
+
 
 /*-----------------------*/
 /*        FOOTER         */
@@ -135,6 +160,7 @@ img {
 p.footerText {
     display: inline;
     color: black;
+    text-align: center;
 }
 .siteFooter {
     font-size: 14px;
@@ -142,6 +168,7 @@ p.footerText {
     position: fixed;
     bottom: 0%;
     width: 100%
+
 }
 /*-----------------------*/
 /*-----------------------*/

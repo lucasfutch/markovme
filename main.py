@@ -25,6 +25,10 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+@app.route('/privacy-policy')
+def privacyPolicy():
+    return render_template('privacyPolicy.html')
+
 
 @app.route('/inputData', methods=['GET', 'POST'])
 def inputText():
@@ -49,7 +53,6 @@ def getFBArray():
     predicted_text = fbpost.PredictText(data)
     # print(predicted_text)
     ##return jsonify({'result': predicted_text})
-
 
 
 if __name__ == '__main__':
