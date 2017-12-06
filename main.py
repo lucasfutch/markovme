@@ -26,9 +26,10 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/inputText', methods=['GET', 'POST'])
+@app.route('/inputData', methods=['GET', 'POST'])
 def inputText():
     data = request.get_json()
+    #return jsonify({'result': "TEST POST FOR TEXT INPUT PLEASE IGNORE"})
     print(data)
     input_text = TextFile()
     assert isinstance(input_text, TextFile)
@@ -37,17 +38,17 @@ def inputText():
     return jsonify({'result': predicted_text})
 
 
-@app.route('/list', methods=['GET', 'POST'])
+@app.route('/facebookData', methods=['GET', 'POST'])
 def getFBArray():
     data = request.get_json()
-    #return jsonify({'result': "TEST POST PLEASE IGNORE"})
+    return jsonify({'result': "TEST POST FOR FACEBOOK PLEASE IGNORE"})
     # x = data['x']
     # print(x)
-    fbpost = facebookPosts()
-    assert isinstance(fbpost, facebookPosts)
+    ##fbpost = facebookPosts()
+    ##assert isinstance(fbpost, facebookPosts)
     predicted_text = fbpost.PredictText(data)
     # print(predicted_text)
-    return jsonify({'result': predicted_text})
+    ##return jsonify({'result': predicted_text})
 
 
 

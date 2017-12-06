@@ -26,6 +26,7 @@ FB.init({
 
 userMessages = [];
 
+// login to facebook
 function myFacebookLogin() {
 	console.log("Logging in");
 	FB.login(function(response){
@@ -37,6 +38,7 @@ function myFacebookLogin() {
 	}}, {scope: 'user_posts'});
 }
 
+// begins facebook data flow
 function myFacebookData() {
 	console.log("Getting data");
 
@@ -53,7 +55,6 @@ function myFacebookData() {
 			}
       		for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
@@ -65,6 +66,7 @@ function myFacebookData() {
     });
 }
 
+// goes through a users facebook data
 function Paginate(nextPage) {
 	console.log("Paginating!");
 	FB.api(nextPage,
@@ -74,7 +76,6 @@ function Paginate(nextPage) {
 
 			for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
@@ -85,14 +86,21 @@ function Paginate(nextPage) {
 			else {
 				console.log("DONE!");
 				$("#loading").html("");
-				$("#loaderThing").hide();
+				
 				$.ajax({
-				    url: "/list",
+				    url: "/facebookData",
 				    type: "POST",
 				    data: JSON.stringify({x: userMessages}),
 				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
-				    error: function(e) {console.log(e);}
+				    success: function(data) { 
+				    	$("#loaderThing").remove();
+				    	$("#mainText").append("<p>" + data.result + "</p>"); 
+				    },
+				    error: function(e) {
+				    	$("#loaderThing").remove();
+				    	$("#mainText").append("There was an error, please try again.");
+				    	console.log(e);
+				    }
 				});
 			}
 		}
@@ -100,30 +108,44 @@ function Paginate(nextPage) {
 	)
 }
 
-function showInputTextArea(){
-	document.getElementById('inputText').style.display = "block";
-	document.getElementById('submitTextButton').style.display = "block";
+// data from user text box input
+function myInputData(){
+    var inputTextValue = $("inputText").val();
+	$.ajax({
+	    url: "/inputData",
+	    type: "POST",
+	    data: JSON.stringify({x: inputTextValue}),
+	    contentType: "application/json; charset=utf-8",
+	    success: function(data) { 
+	    	$("#loaderThing").remove();
+	    	$("inputText").val('');
+	    	$("#mainText").append("<p>" + data.result + "</p>"); 
+	    },
+	    error: function(e) {
+	    	$("#loaderThing").remove();
+	    	$("#mainText").append("There was an error, please try again.");
+	    	console.log(e);
+	    }
+	});
 }
 
-function getPredictedText(){
-    var input_Text = document.getElementById("inputText").value;
-    //console.log(inputText);
-    $("#loading").html("");
-    $("#loaderThing").hide();
-    	$.ajax({
-				    url: "/inputText",
-				    type: "POST",
-				    data: JSON.stringify({x: input_Text}),
-				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
-				    error: function(e) {console.log(e);}
-				});
-}
-$(document).ready(function(){
+
+function hideButtons() {
+
 	$("#getDataFBButton").hide();
+	$("#inputText").hide();
+	$("#submitTextButton").hide();
+	$("#loaderThing").remove();
+	$("#mainText").html("");
+
+}
+
+$(document).ready(function(){
+	hideButtons();
+
 
 	$("#loginFBButton").click(function(){		
-  		$("#mainText").html("");
+		hideButtons();
   		myFacebookLogin();
 	});
 
@@ -133,15 +155,22 @@ $(document).ready(function(){
   		myFacebookData();
 	});
 
+	$("#getDataInputButton").click(function(){
+		hideButtons();
+		$("#inputText").show();
+		$("#submitTextButton").show();		
+  		//myInputData();
+	});
+
 	$("#submitTextButton").click(function(){
-  		$("#mainText").html("");
+		$("#mainText").html("");
 		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
-  		getPredictedText();
+		myInputData();
 	});
 
 
 	$("#getDataMessengerButton").click(function(){
-		$("#getDataFBButton").hide();
+		hideButtons();
 		$("#mainText").html("Coming soon!");
 	});
 
