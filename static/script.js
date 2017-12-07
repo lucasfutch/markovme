@@ -109,7 +109,7 @@ function Paginate(nextPage) {
 }
 
 // data from user text box input
-function myInputData(){
+function myInputData() {
     var inputTextValue = $("inputText").val();
 	$.ajax({
 	    url: "/inputData",
@@ -128,6 +128,28 @@ function myInputData(){
 	    }
 	});
 }
+
+// get twitter posts
+function myTwitterData() {
+	$.ajax({
+	    url: "/twitterData",
+	    type: "POST",
+	    data: JSON.stringify({x: "TESTPOST"}),
+	    contentType: "application/json; charset=utf-8",
+	    success: function(data) { 
+	    	$("#loaderThing").remove();
+	    	$("inputText").val('');
+	    	$("#mainText").append("<p>" + data.result + "</p>"); 
+	    },
+	    error: function(e) {
+	    	$("#loaderThing").remove();
+	    	$("#mainText").append("There was an error, please try again.");
+	    	console.log(e);
+	    }
+	});
+}
+
+
 
 function hideButtons() {
 
@@ -168,9 +190,10 @@ $(document).ready(function(){
 	});
 
 
-	$("#getDataMessengerButton").click(function(){
+	$("#getDataTwitterButton").click(function(){
 		hideButtons();
-		$("#mainText").html("Coming soon!");
+		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
+		myTwitterData();
 	});
 
 });
