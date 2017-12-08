@@ -58,19 +58,23 @@ def getFBArray():
 def getTwitterData():
     data = request.get_json()
 
+    # twitter authentication stuff
     auth = tweepy.OAuthHandler("t1lQX1VkiCf3dHC4z9XOtf8wy", "rh2KjvPIakeymfrMzQYXtR5T3AFYB3Rt1yq4ZW2YcL5Eji2EpI")
     auth.set_access_token("72186647-4qqJpl6DpSKEqVhDsLxQjmqTcq8YyoRwl1ow2xaZG", "q9SsVA3v8BJSFqZKrEAErbJMmfM3VzNRCLiWf0DVJTNkm")
     twitter_api = tweepy.API(auth)
  
+    # twitter user data. 
+    # can change the amount of tweets/items requested or each one
+    # check that the textbox was not empty
     if (data['user1'] != ''):
-        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(5)
-        for result in getUser1Tweets:
-            print(result.text)
+        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(200)
+        #for result in getUser1Tweets:
+        #    print(result.text)
 
     if (data['user2'] != ''):
-        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(5)
-        for result in getUser2Tweets:
-            print(result.text)
+        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(200)
+        #for result in getUser2Tweets:
+        #    print(result.text)
 
     return result.text
 

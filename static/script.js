@@ -24,7 +24,8 @@ FB.init({
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-userMessages = [];
+var userMessages = [];
+var userTextInput = [];
 
 // login to facebook
 function myFacebookLogin() {
@@ -111,6 +112,7 @@ function Paginate(nextPage) {
 // data from user text box input
 function myInputData() {
     var inputTextValue = $("#inputText").val();
+    userTextInput.push(inputTextValue);
 	$.ajax({
 	    url: "/inputData",
 	    type: "POST",
@@ -140,11 +142,11 @@ function myTwitterData() {
 	    data: JSON.stringify({user1: inputTwitterUser1, user2: inputTwitterUser2}),
 	    contentType: "application/json; charset=utf-8",
 	    success: function(data) { 
-	    	$("twitterUser1").val("");
+	    	$("#twitterUser1").val("");
 	    	$("#loaderThing").remove();
-	    	$("inputText").val('');
+	    	$("#inputText").val('');
 	    	console.log(data)
-	    	$("#mainText").append("<p>" + data.result + "</p>"); 
+	    	$("#mainText").append("<p>" + data + "</p>"); 
 	    },
 	    error: function(e) {
 	    	$("#loaderThing").remove();
@@ -178,9 +180,31 @@ $(document).ready(function(){
 	});
 
 	$("#getDataFBButton").click(function(){
-  		$("#mainText").html("");
-		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
-  		myFacebookData();
+		// check if data has been obtained already
+		if (typeof userMessages !== 'undefined' && userMessages.length > 0) {
+	  		$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+	  		$.ajax({
+			    url: "/facebookData",
+			    type: "POST",
+			    data: JSON.stringify({x: userMessages}),
+			    contentType: "application/json; charset=utf-8",
+			    success: function(data) { 
+			    	$("#loaderThing").remove();
+			    	$("#mainText").append("<p>" + data.result + "</p>"); 
+			    },
+			    error: function(e) {
+			    	$("#loaderThing").remove();
+			    	$("#mainText").append("There was an error, please try again.");
+			    	console.log(e);
+			    }
+			});
+	  	} 
+	  	else {
+			$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+	  		myFacebookData();
+  		}
 	});
 
 	$("#getDataInputButton").click(function(){
@@ -190,11 +214,35 @@ $(document).ready(function(){
 	});
 
 	$("#submitTextButton").click(function(){
-		$("#mainText").html("");
-		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
-		myInputData();
-	});
 
+		// check if data has been obtained already
+		if (typeof userTextInput !== 'undefined' && userTextInput.length > 0) {
+			console.log("text else")
+			$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+			$.ajax({
+			    url: "/inputData",
+			    type: "POST",
+			    data: JSON.stringify({x: userTextInput[0]}),
+			    contentType: "application/json; charset=utf-8",
+			    success: function(data) { 
+			    	$("#loaderThing").remove();
+			    	$("inputText").val('');
+			    	$("#mainText").append("<p>" + data.result + "</p>"); 
+			    },
+			    error: function(e) {
+			    	$("#loaderThing").remove();
+			    	$("#mainText").append("There was an error, please try again.");
+			    	console.log(e);
+			    }
+			});
+		}
+		else {
+			$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+			myInputData();
+		}
+	});
 
 	$("#getDataTwitterButton").click(function(){
 		hideButtons();
@@ -203,7 +251,8 @@ $(document).ready(function(){
 	});
 
 	$("#submitTwitterButton").click(function(){
-		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
+		$("#mainText").html("");
+		$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
 		myTwitterData();
 	});
 
