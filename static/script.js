@@ -116,10 +116,16 @@ function myInputData() {
 	    type: "POST",
 	    data: JSON.stringify({x: inputTextValue}),
 	    contentType: "application/json; charset=utf-8",
-	    success: function(data) { 
+	    success: function(data) {
 	    	$("#loaderThing").remove();
 	    	$("inputText").val('');
-	    	$("#mainText").append("<p>" + data.result + "</p>"); 
+	    	if (data.result == null) {
+	    		$("#mainText").append("Not enough text. <br> Please enter more text to continue.");
+	    	} 
+	    	else {
+	    		$("#mainText").append("<p>" + data.result + "</p>"); 
+
+	    	}
 	    },
 	    error: function(e) {
 	    	$("#loaderThing").remove();
@@ -143,7 +149,6 @@ function myTwitterData() {
 	    	$("#twitterUser1").val("");
 	    	$("#loaderThing").remove();
 	    	$("#inputText").val('');
-	    	console.log(data)
 	    	$("#mainText").append("<p>" + data + "</p>"); 
 	    },
 	    error: function(e) {
