@@ -146,7 +146,6 @@ function myTwitterData() {
 	    data: JSON.stringify({user1: inputTwitterUser1, user2: inputTwitterUser2}),
 	    contentType: "application/json; charset=utf-8",
 	    success: function(data) { 
-	    	$("#twitterUser1").val("");
 	    	$("#loaderThing").remove();
 	    	$("#inputText").val('');
 	    	$("#mainText").append("<p>" + data + "</p>"); 

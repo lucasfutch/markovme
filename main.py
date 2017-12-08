@@ -56,6 +56,7 @@ def getFBArray():
 
 @app.route('/twitterData', methods=['GET', 'POST'])
 def getTwitterData():
+    twitterDataArray = []
     data = request.get_json()
 
     # twitter authentication stuff
@@ -67,16 +68,19 @@ def getTwitterData():
     # can change the amount of tweets/items requested or each one
     # check that the textbox was not empty
     if (data['user1'] != ''):
-        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(200)
-        #for result in getUser1Tweets:
+        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(5)
+        # this gets every tweet and you can manipulate them
+        for result in getUser1Tweets:
+            twitterDataArray.append(result.text);
         #    print(result.text)
 
     if (data['user2'] != ''):
-        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(200)
-        #for result in getUser2Tweets:
+        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(5)
+        for result in getUser2Tweets:
+            twitterDataArray.append(result.text);
         #    print(result.text)
 
-    return result.text
+    return twitterDataArray[0]
 
 
 if __name__ == '__main__':
