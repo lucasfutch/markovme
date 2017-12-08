@@ -35,7 +35,6 @@ def privacyPolicy():
 def inputText():
     data = request.get_json()
     #return jsonify({'result': "TEST POST FOR TEXT INPUT PLEASE IGNORE"})
-    #print(data)
     input_text = TextFile()
     assert isinstance(input_text, TextFile)
     predicted_text = input_text.PredictText(data['x'])
@@ -58,17 +57,22 @@ def getFBArray():
 @app.route('/twitterData', methods=['GET', 'POST'])
 def getTwitterData():
     data = request.get_json()
+
     auth = tweepy.OAuthHandler("t1lQX1VkiCf3dHC4z9XOtf8wy", "rh2KjvPIakeymfrMzQYXtR5T3AFYB3Rt1yq4ZW2YcL5Eji2EpI")
     auth.set_access_token("72186647-4qqJpl6DpSKEqVhDsLxQjmqTcq8YyoRwl1ow2xaZG", "q9SsVA3v8BJSFqZKrEAErbJMmfM3VzNRCLiWf0DVJTNkm")
     twitter_api = tweepy.API(auth)
  
-    getUserTweets = tweepy.Cursor(twitter_api.user_timeline, id = "realDonaldTrump").items(200)
-    for result in getUserTweets:
-        print(result.text)
- 
+    if (data['user1'] != ''):
+        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(5)
+        for result in getUser1Tweets:
+            print(result.text)
 
+    if (data['user2'] != ''):
+        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(5)
+        for result in getUser2Tweets:
+            print(result.text)
 
-    return "TEST POST PLEASE IGNORE"
+    return result.text
 
 
 if __name__ == '__main__':

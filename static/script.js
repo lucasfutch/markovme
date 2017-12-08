@@ -110,7 +110,7 @@ function Paginate(nextPage) {
 
 // data from user text box input
 function myInputData() {
-    var inputTextValue = $("inputText").val();
+    var inputTextValue = $("#inputText").val();
 	$.ajax({
 	    url: "/inputData",
 	    type: "POST",
@@ -131,14 +131,19 @@ function myInputData() {
 
 // get twitter posts
 function myTwitterData() {
+	var inputTwitterUser1 = $("#twitterUser1").val();
+	var inputTwitterUser2 = $("#twitterUser2").val();
+
 	$.ajax({
 	    url: "/twitterData",
 	    type: "POST",
-	    data: JSON.stringify({x: "TESTPOST"}),
+	    data: JSON.stringify({user1: inputTwitterUser1, user2: inputTwitterUser2}),
 	    contentType: "application/json; charset=utf-8",
 	    success: function(data) { 
+	    	$("twitterUser1").val("");
 	    	$("#loaderThing").remove();
 	    	$("inputText").val('');
+	    	console.log(data)
 	    	$("#mainText").append("<p>" + data.result + "</p>"); 
 	    },
 	    error: function(e) {
@@ -158,6 +163,8 @@ function hideButtons() {
 	$("#submitTextButton").hide();
 	$("#loaderThing").remove();
 	$("#mainText").html("");
+	$(".twitterUsername").hide();
+	$("#submitTwitterButton").hide()
 
 }
 
@@ -180,7 +187,6 @@ $(document).ready(function(){
 		hideButtons();
 		$("#inputText").show();
 		$("#submitTextButton").show();		
-  		//myInputData();
 	});
 
 	$("#submitTextButton").click(function(){
@@ -192,6 +198,11 @@ $(document).ready(function(){
 
 	$("#getDataTwitterButton").click(function(){
 		hideButtons();
+		$(".twitterUsername").show();
+		$("#submitTwitterButton").show()
+	});
+
+	$("#submitTwitterButton").click(function(){
 		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
 		myTwitterData();
 	});
