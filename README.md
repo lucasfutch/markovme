@@ -12,6 +12,7 @@ Requirements:
   * Python 3.0 or greater  
   * Install flask for  python `sudo pip3 install flask`
   * Install markovify `sudo pip3 install markovify`
+  * Install tweepy `sudo pip3 install tweepy`
 
 Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the markov text generator. 
 
@@ -24,3 +25,7 @@ When you open the page, you are greeted with four buttons to press. Login with F
 ## v.03
 
 Finally, the app is approved by Facebook. We still have four buttons. Login with Facebook will ask you to login with your facebook and ask permission to allows us to use your timeline posts. Press OK to give us the permissions. Then you can click the Get My Predicted Posts button. It will take couple of seconds for us to collect your facebook posts. After that you will be presented with your predicted post on the webpage. 
+
+## v.04
+
+Chaged page functionalities to now accept text input and to pull twitter data.

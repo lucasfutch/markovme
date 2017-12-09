@@ -1,4 +1,3 @@
-
 /////////////////////////////////////////////////////////////////////
 //// FB LOGIN FLOW //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -24,8 +23,9 @@ FB.init({
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-userMessages = [];
+var userMessages = [];
 
+// login to facebook
 function myFacebookLogin() {
 	console.log("Logging in");
 	FB.login(function(response){
@@ -37,6 +37,7 @@ function myFacebookLogin() {
 	}}, {scope: 'user_posts'});
 }
 
+// begins facebook data flow
 function myFacebookData() {
 	console.log("Getting data");
 
@@ -53,18 +54,18 @@ function myFacebookData() {
 			}
       		for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
 
       		if (response.data.length != 0 && response.paging.next) {
       			Paginate(response.paging.next);
-      		}	
+      		}
      	}
     });
 }
 
+// goes through a users facebook data
 function Paginate(nextPage) {
 	console.log("Paginating!");
 	FB.api(nextPage,
@@ -74,7 +75,6 @@ function Paginate(nextPage) {
 
 			for (var i = 0; i < response.data.length; i++) {
       			if (response.data[i].hasOwnProperty('message')) {
-      				//$("#mainText").append("<p>" + response.data[i].message + "</p>");
       				userMessages.push(response.data[i].message);
       			}
       		}
@@ -85,14 +85,21 @@ function Paginate(nextPage) {
 			else {
 				console.log("DONE!");
 				$("#loading").html("");
-				$("#loaderThing").hide();
+
 				$.ajax({
-				    url: "/list",
+				    url: "/facebookData",
 				    type: "POST",
 				    data: JSON.stringify({x: userMessages}),
 				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>");},
-				    error: function(e) {console.log(e);}
+				    success: function(data) {
+				    	$("#loaderThing").remove();
+				    	$("#mainText").append("<p>" + data.result + "</p>");
+				    },
+				    error: function(e) {
+				    	$("#loaderThing").remove();
+				    	$("#mainText").append("There was an error, please try again.");
+				    	console.log(e);
+				    }
 				});
 			}
 		}
@@ -100,50 +107,129 @@ function Paginate(nextPage) {
 	)
 }
 
-function showInputTextArea(){
-	document.getElementById('inputText').style.display = "block";
-	document.getElementById('submitTextButton').style.display = "block";
+// data from user text box input
+function myInputData() {
+    var inputTextValue = $("#inputText").val();
+	$.ajax({
+	    url: "/inputData",
+	    type: "POST",
+	    data: JSON.stringify({x: inputTextValue}),
+	    contentType: "application/json; charset=utf-8",
+	    success: function(data) {
+	    	$("#loaderThing").remove();
+	    	$("inputText").val('');
+	    	if (data.result == null) {
+	    		$("#mainText").append("Not enough text. <br> Please enter more text to continue.");
+	    	}
+	    	else {
+	    		$("#mainText").append("<p>" + data.result + "</p>");
+
+	    	}
+	    },
+	    error: function(e) {
+	    	$("#loaderThing").remove();
+	    	$("#mainText").append("There was an error, please try again.");
+	    	console.log(e);
+	    }
+	});
 }
 
-function getPredictedText(){
-    var input_Text = document.getElementById("inputText").value;
-    //console.log(inputText);
-    $("#loading").html("");
-    $("#loaderThing").hide();
-    	$.ajax({
-				    url: "/inputText",
-				    type: "POST",
-				    data: JSON.stringify({x: input_Text}),
-				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); console.log(data.result)},
-				    error: function(e) {console.log(e);}
-				});
+// get twitter posts
+function myTwitterData() {
+	var inputTwitterUser1 = $("#twitterUser1").val();
+	var inputTwitterUser2 = $("#twitterUser2").val();
+
+	$.ajax({
+	    url: "/twitterData",
+	    type: "POST",
+	    data: JSON.stringify({user1: inputTwitterUser1, user2: inputTwitterUser2}),
+	    contentType: "application/json; charset=utf-8",
+	    success: function(data) {
+	    	$("#loaderThing").remove();
+	    	$("#inputText").val('');
+	    	$("#mainText").append("<p>" + data + "</p>");
+	    },
+	    error: function(e) {
+	    	$("#loaderThing").remove();
+	    	$("#mainText").append("There was an error, please try again.");
+	    	console.log(e);
+	    }
+	});
 }
-$(document).ready(function(){
+
+
+
+function hideButtons() {
+
 	$("#getDataFBButton").hide();
+	$("#inputText").hide();
+	$("#submitTextButton").hide();
+	$("#loaderThing").remove();
+	$("#mainText").html("");
+	$(".twitterUsername").hide();
+	$("#submitTwitterButton").hide()
 
-	$("#loginFBButton").click(function(){		
-  		$("#mainText").html("");
+}
+
+$(document).ready(function(){
+	hideButtons();
+
+
+	$("#loginFBButton").click(function(){
+		hideButtons();
   		myFacebookLogin();
 	});
 
 	$("#getDataFBButton").click(function(){
-  		$("#mainText").html("");
-		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
-  		myFacebookData();
+		// check if data has been obtained already
+		if (typeof userMessages !== 'undefined' && userMessages.length > 0) {
+	  		$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+	  		$.ajax({
+			    url: "/facebookData",
+			    type: "POST",
+			    data: JSON.stringify({x: userMessages}),
+			    contentType: "application/json; charset=utf-8",
+			    success: function(data) {
+			    	$("#loaderThing").remove();
+			    	$("#mainText").append("<p>" + data.result + "</p>");
+			    },
+			    error: function(e) {
+			    	$("#loaderThing").remove();
+			    	$("#mainText").append("There was an error, please try again.");
+			    	console.log(e);
+			    }
+			});
+	  	}
+	  	else {
+			$("#mainText").html("");
+			$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+	  		myFacebookData();
+  		}
+	});
+
+	$("#getDataInputButton").click(function(){
+		hideButtons();
+		$("#inputText").show();
+		$("#submitTextButton").show();
 	});
 
 	$("#submitTextButton").click(function(){
-  		$("#mainText").html("");
-		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
-		document.getElementById('inputText').style.display = "none";
-  		getPredictedText();
+		$("#mainText").html("");
+		$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+		myInputData();
 	});
 
+	$("#getDataTwitterButton").click(function(){
+		hideButtons();
+		$(".twitterUsername").show();
+		$("#submitTwitterButton").show()
+	});
 
-	$("#getDataMessengerButton").click(function(){
-		$("#getDataFBButton").hide();
-		$("#mainText").html("Coming soon!");
+	$("#submitTwitterButton").click(function(){
+		$("#mainText").html("");
+		$("#middle").append('<div id = "loaderThing" class = "loader"></div>');
+		myTwitterData();
 	});
 
 });

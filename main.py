@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os
 from werkzeug.utils import secure_filename
 import markovify
+import tweepy
 
 from flask import Flask
 
@@ -25,11 +26,15 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+@app.route('/privacy-policy')
+def privacyPolicy():
+    return render_template('privacyPolicy.html')
 
-@app.route('/inputText', methods=['GET', 'POST'])
+
+@app.route('/inputData', methods=['GET', 'POST'])
 def inputText():
     data = request.get_json()
-    print(data)
+    #return jsonify({'result': "TEST POST FOR TEXT INPUT PLEASE IGNORE"})
     input_text = TextFile()
     assert isinstance(input_text, TextFile)
     predicted_text = input_text.PredictText(data['x'])
@@ -37,10 +42,10 @@ def inputText():
     return jsonify({'result': predicted_text})
 
 
-@app.route('/list', methods=['GET', 'POST'])
+@app.route('/facebookData', methods=['GET', 'POST'])
 def getFBArray():
     data = request.get_json()
-    #return jsonify({'result': "TEST POST PLEASE IGNORE"})
+    #return jsonify({'result': "TEST POST FOR FACEBOOK PLEASE IGNORE"})
     # x = data['x']
     # print(x)
     fbpost = facebookPosts()
@@ -49,7 +54,35 @@ def getFBArray():
     # print(predicted_text)
     return jsonify({'result': predicted_text})
 
+@app.route('/twitterData', methods=['GET', 'POST'])
+def getTwitterData():
+    twitterDataArray = []
+    data = request.get_json()
+
+    # twitter authentication stuff
+    auth = tweepy.OAuthHandler("t1lQX1VkiCf3dHC4z9XOtf8wy", "rh2KjvPIakeymfrMzQYXtR5T3AFYB3Rt1yq4ZW2YcL5Eji2EpI")
+    auth.set_access_token("72186647-4qqJpl6DpSKEqVhDsLxQjmqTcq8YyoRwl1ow2xaZG", "q9SsVA3v8BJSFqZKrEAErbJMmfM3VzNRCLiWf0DVJTNkm")
+    twitter_api = tweepy.API(auth)
+ 
+    # twitter user data. 
+    # can change the amount of tweets/items requested or each one
+    # check that the textbox was not empty
+    if (data['user1'] != ''):
+        getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user1']).items(5)
+        # this gets every tweet and you can manipulate them
+        for result in getUser1Tweets:
+            twitterDataArray.append(result.text);
+        #    print(result.text)
+
+    if (data['user2'] != ''):
+        getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, id = data['user2']).items(5)
+        for result in getUser2Tweets:
+            twitterDataArray.append(result.text);
+        #    print(result.text)
+
+    return twitterDataArray[0]
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run('0.0.0.0')
+
