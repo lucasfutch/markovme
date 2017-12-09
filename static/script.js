@@ -91,7 +91,7 @@ function Paginate(nextPage) {
 				    type: "POST",
 				    data: JSON.stringify({x: userMessages}),
 				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
+				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>");},
 				    error: function(e) {console.log(e);}
 				});
 			}
@@ -115,7 +115,7 @@ function getPredictedText(){
 				    type: "POST",
 				    data: JSON.stringify({x: input_Text}),
 				    contentType: "application/json; charset=utf-8",
-				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); },
+				    success: function(data) { $("#mainText").append("<p>" + data.result + "</p>"); console.log(data.result)},
 				    error: function(e) {console.log(e);}
 				});
 }
@@ -136,6 +136,7 @@ $(document).ready(function(){
 	$("#submitTextButton").click(function(){
   		$("#mainText").html("");
 		$("#middle").append('<div id = "loaderThing" class="loader"></div>');
+		document.getElementById('inputText').style.display = "none";
   		getPredictedText();
 	});
 
