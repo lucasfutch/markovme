@@ -1,50 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width">
-		<title>MarkovMe</title>
-		<link rel="stylesheet" type="text/css" href="../static/style.css" />
-		<link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="../static/favicon.ico" type="image/x-icon">
-		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-	</head>
-	<body>
-		<div id = "top">
-			<img src="../static/icon.png">
-			<h1 id = "title">MarkovMe</p>
-		</div>
-
-		<div id = "middle">
-			<button id = 'loginFBButton' class = "topLeft aButton">Login with Facebook</button>
-			<button id = 'getDataInputButton' class = "topMiddle aButton">Input Text</button>
-			<button id = 'getDataTwitterButton' class = "topRight aButton">Get Twitter Tweets</button>
+{% extends "base.html" %}
+{% block content %}
+	<h3 id = "instructionsText" class = "helpText">Instructions</h3>
+		<p class = "helpText insText"> <b>Facebook</b>: Log in, and allow MarkovMe to access your Facebook Timeline posts. Generate a post using your own data. </p>
+		<p class = "helpText insText"> <b>Plaintext</b>: Enter enough text so that it can be manipulated, such as an essay or a long enough piece of text from a favorite book.</p>
+		<p class = "helpText insText"> <b>Twitter</b>: enter one or two public twitter handles, and generate a tweet based on them.</p>
 
 
-			<button id = "getDataFBButton" class = "aButton">Get My Predicted Facebook Post</button>
-            <textarea name = "inputText" id ="inputText" rows="10" placeholder="Input your Text Here"></textarea>
-            <button id = "submitTextButton" class = "dataSubmit aButton">Get My Predicted Text</button>
-            <input class = "twitterUsername" type = "text" id = "twitterUser1" placeholder = "@username">
-            <input class = "twitterUsername" type = "text" id = "twitterUser2" placeholder = "@username">
-            <button id = "submitTwitterButton" class = "dataSubmit aButton">Get My Predicted Tweet</button>
+	<button id = 'loginFBButton' class = "topLeft aButton">Login with Facebook</button>
+	<button id = 'getDataInputButton' class = "topMiddle aButton">Input Text</button>
+	<button id = 'getDataTwitterButton' class = "topRight aButton">Get Twitter Tweets</button>
 
-            <p id = "mainText">HELLO THERE</p>
-		</div>
 
-		<div id = "bottom">
-			
-		</div>
+	<button id = "getDataFBButton" class = "aButton">Get My Predicted Facebook Post</button>
+    <textarea name = "inputText" id ="inputText" rows="10" placeholder="Input your Text Here"></textarea>
+    <button id = "submitTextButton" class = "dataSubmit aButton">Get My Predicted Text</button>
+    <input class = "twitterUsername" type = "text" id = "twitterUser1" placeholder = "@username">
+    <input class = "twitterUsername" type = "text" id = "twitterUser2" placeholder = "@username">
+    <button id = "submitTwitterButton" class = "dataSubmit aButton">Get My Predicted Tweet</button>
 
-		<footer class="siteFooter" id = "floatingFooter"> 
-			<p class="footerText">Krishna Gaire and Lucas Futch</p>
-			<p class="footerText">&mdash; NYUAD</p>
-			<a class = "link" href = "https://github.abudhabi.nyu.edu/lf1345/finalProject">Github</a>
-			<a class = "link" href = "/privacy-policy">Privacy Policy</a>
-		</footer>
-
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="../static/script.js"></script>
-		
-	</body>
-</html>
+    <p id = "mainText">HELLO THERE</p>
+{% endblock %}

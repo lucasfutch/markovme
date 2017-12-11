@@ -29,9 +29,14 @@ settings.init('self')
 def index():
     return render_template('index.html')
 
+@app.route('/help')
+def help():
+    return render_template('help.html')
+
 @app.route('/privacy-policy')
 def privacyPolicy():
     return render_template('privacyPolicy.html')
+
 
 
 #take input from the input text box and return the predicted text

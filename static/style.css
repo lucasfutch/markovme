@@ -12,12 +12,6 @@ img {
     margin: 10px;
 }
 
-#top {
-	/*display: block;*/
-    /*margin-bottom: 15px;*/
-    /*border-bottom: 2px solid black;*/
-}
-
 #title {
     text-align: center;
     font-size: 38px;
@@ -76,6 +70,16 @@ img {
 	display: block;
 }
 
+.helpText {
+    text-align: center;
+}
+
+/*#backLink {
+    text-align: center;
+    display:block;
+    font-size: 24px;
+}*/
+
 /*-----------------------*/
 /*-----DATA-INPUT--------*/
 /*-----------------------*/
@@ -105,6 +109,9 @@ img {
     padding: 0;
 }
 
+#instructions:hover {
+    
+}
 
 
 
@@ -120,21 +127,45 @@ img {
 /*-----------------------*/
 /*--------LINKS----------*/
 /*-----------------------*/
-a {
+a.link {
     margin-top: 10px;
 }
 
-a:link, a:visited{
+a.link:link, a.link:visited{
     color: white;
     background-color: black;
     text-decoration: none;
 }
 
-a:hover, a:active {
+a.link:hover, a.link:active {
     color: blue;
     background-color: white;
     text-decoration: underline;
 }
+
+a.titleLink {
+    color: black;
+    text-decoration: none;
+}
+
+a.menuLink {
+    text-align: center;
+    color: white;
+    background-color: black;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 22px;
+}
+
+a.backLink {
+    text-align: center;
+    display: block;
+    color: white;
+    background-color: black;
+    text-decoration: none;
+}
+
+
 
 /*-----------------------*/
 /*--------LOADER---------*/

@@ -181,12 +181,20 @@ function hideButtons() {
 	$("#mainText").html("");
 	$(".twitterUsername").hide();
 	$("#submitTwitterButton").hide()
+	$(".insText").hide();
 
 }
 
 $(document).ready(function(){
 	hideButtons();
 
+	$("#instructionsText").hover(
+		function() {
+	    	$(".insText").show();
+		}, function() {
+	    	$(".insText").hide();
+		}
+	);
 
 	$("#loginFBButton").click(function(){
 		hideButtons();

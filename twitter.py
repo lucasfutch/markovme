@@ -30,7 +30,7 @@ class twitter(MainTemplate):
                     data['user1']=data['user1'][1:]
 
                 #getting twitter data
-                getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, q="* -filter:retweets -filter:replies", screen_name=data['user1'], include_rts = False).items(200)
+                getUser1Tweets = tweepy.Cursor(twitter_api.user_timeline, q="* -filter:retweets -filter:replies", screen_name=data['user1'], include_rts = False).items(500)
                 # this gets every tweet and you can manipulate them
                 for result in getUser1Tweets:
                     #saving the tweets in a global variable called retrieve_data
@@ -44,7 +44,7 @@ class twitter(MainTemplate):
             if data['user2'] != "":
                 if data['user2'][0]=='@':
                     data['user2']=data['user2'][1:]
-                getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, q="* -filter:retweets -filter:replies", screen_name=data['user2'], include_rts = False).items(200)
+                getUser2Tweets = tweepy.Cursor(twitter_api.user_timeline, q="* -filter:retweets -filter:replies", screen_name=data['user2'], include_rts = False).items(500)
                 for result in getUser2Tweets:
                     settings.retrieve_data.append(result.text);
         except Exception as e:
