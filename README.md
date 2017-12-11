@@ -28,4 +28,4 @@ Finally, the app is approved by Facebook. We still have four buttons. Login with
 
 ## v.04
 
-Chaged page functionalities to now accept text input and to pull twitter data.
+Chaged page functionalities to now accept text input and to pull twitter data. Two different twitter profiles can be used to generate a tweet based on both personalities. Text input requires sufficient data to get a database running, to generate probable posts based on it. Help has been added to the page, so that new users are not lost when coming in.
