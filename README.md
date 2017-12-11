@@ -2,30 +2,35 @@
 Software Engineering Fall 2017 Final Project
 By Krishna Gaire and Lucas Futch
 
-The purpose of this project is to develop and refine the skills of implementing a Software Engineering project. Our project consists of Markov Chain natural language processing, where we the training data for the process will consist of personal user information, coming from places such as Facebook posts, Facebook Messenger messages, or play/movie scripts.  
+## Purpose and Goals
+
+The purpose of this project is to develop and refine the skills of implementing a Software Engineering project. Our project consists of Markov Chain natural language processing, where we the training data for the process will consist of personal user information, coming from places such as Facebook posts, Twitter Tweets, or user provided text input.
 
 Our goals for this project include creating a release deliverable that users can interact with, and easily obtain their desired output. In our case, output would be sentences that are developed from the training data. We also want to better understand the stochastic process behind the Markov Process, to better apply it on our models and project.
 
+## Requirements:
+
+  * Python 3.0 or greater  
+  * pip3
+
 ## Running The Code
 
-Requirements:
-  * Python 3.0 or greater  
-  * Install flask for  python `sudo pip3 install flask`
-  * Install markovify `sudo pip3 install markovify`
-  * Install tweepy `sudo pip3 install tweepy`
+Run `pip3 install -r requirements.txt` to install all required python packages to run the server.
 
-Now run the main.py. It will create and run a server. Then go on to http://0.0.0.0/5000 and have fun with the markov text generator. 
+Run the main.py file. It will create and begin a server. Go to `localhost:5000` on a web browser and have fun with the markov text generator. 
 
-## v.01
-For v.01 click on Login With Facebook Button. It will redirect you to login with facebook which will allow us to get your timeline posts. 
+## Using the Page
 
-## v.02
-When you open the page, you are greeted with four buttons to press. Login with Facebook to be able to pull your posts, done with the second button and which displays the posts. The third button provides a document upload form, which is intended to accept text files of data to be analyzed. This has been not implemented. Fourth button is intended to get data from your messenger. This also has not been implemented yet. 
+There main page has the instructions on how to use the page, as well as the buttons that are used for each different input. 
 
-## v.03
+The Facebook flow will begin witht he first button, prompting the user to first log in. Once this is done, the user can generate a post, first waiting for their timeline to be parsed. The data is stores locally so that the user does not have to wait to get more Facebook posts while in the same session.
 
-Finally, the app is approved by Facebook. We still have four buttons. Login with Facebook will ask you to login with your facebook and ask permission to allows us to use your timeline posts. Press OK to give us the permissions. Then you can click the Get My Predicted Posts button. It will take couple of seconds for us to collect your facebook posts. After that you will be presented with your predicted post on the webpage. 
+The Input flow requires a user to give enough text, and will be prompted if there is not enough data to generate a post. The text can come from any source, such as that of an essay, a book, or any other place the user can copy text from.
 
-## v.04
+The Twitter flow has the option to enter two Twitter handles, but it still works with just one. The Twitter handles are taken and the users are parsed for their tweets, so both of the given users need sufficient data in their profiles to generate a tweet.
 
-Chaged page functionalities to now accept text input and to pull twitter data. Two different twitter profiles can be used to generate a tweet based on both personalities. Text input requires sufficient data to get a database running, to generate probable posts based on it. Help has been added to the page, so that new users are not lost when coming in.
+## Wiki Links
+
+[User Stories and Use Cases](https://github.abudhabi.nyu.edu/lf1345/finalProject/wiki/User-Stories-and-Use-Cases)
+
+[Release History](https://github.abudhabi.nyu.edu/lf1345/finalProject/wiki/Release-Library)
