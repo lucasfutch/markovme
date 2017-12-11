@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width">
+		<title>MarkovMe</title>
+		<link rel="stylesheet" type="text/css" href="../static/style.css" />
+		<link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+	</head>
+	<body>
+		<div id = "top">
+			<img src="../static/icon.png">
+			<h1 id = "title"><a class = "titleLink" href="/">MarkovMe<a/></h1>
+		</div>
+
+		<div id = "middle">
+			{% block content %}{% endblock %}
+		</div>
+
+		<div id = "bottom">
+			
+		</div>
+
+		<footer class="siteFooter" id = "floatingFooter"> 
+			
+			<p class = "footerText">Krishna Gaire and Lucas Futch</p>
+			<p class = "footerText">&mdash; NYUAD</p>
+			<a class = "link" href = "/help">Help</a>
+			<a class = "link" href = "https://github.abudhabi.nyu.edu/lf1345/finalProject">Github</a>
+			<a class = "link" href = "/privacy-policy">Privacy Policy</a>
+		</footer>
+
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="../static/script.js"></script>
+		
+	</body>
+</html>
