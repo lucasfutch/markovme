@@ -110,6 +110,8 @@ function Paginate(nextPage) {
 // data from user text box input
 function myInputData() {
     var inputTextValue = $("#inputText").val();
+    console.log(inputTextValue.length);
+    if (inputTextValue.length > 20){
 	$.ajax({
 	    url: "/inputData",
 	    type: "POST",
@@ -133,11 +135,17 @@ function myInputData() {
 	    }
 	});
 }
+else{
+    	$("#loaderThing").remove();
+    	$("#mainText").append("Not enough text. <br> Please enter more text to continue.");
+    }
+}
 
 // get twitter posts
 function myTwitterData() {
 	var inputTwitterUser1 = $("#twitterUser1").val();
 	var inputTwitterUser2 = $("#twitterUser2").val();
+	if (inputTwitterUser1.length > 1 || inputTwitterUser2.length> 1){
 
 	$.ajax({
 	    url: "/twitterData",
@@ -147,7 +155,7 @@ function myTwitterData() {
 	    success: function(data) {
 	    	$("#loaderThing").remove();
 	    	$("#inputText").val('');
-	    	$("#mainText").append("<p>" + data + "</p>");
+	    	$("#mainText").append("<p>" + data.result + "</p>");
 	    },
 	    error: function(e) {
 	    	$("#loaderThing").remove();
@@ -155,6 +163,11 @@ function myTwitterData() {
 	    	console.log(e);
 	    }
 	});
+}
+else{
+		$("#loaderThing").remove();
+		$("#mainText").append("Please input at least one twitter handle");
+	}
 }
 
 

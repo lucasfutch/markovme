@@ -8,15 +8,10 @@ from pathlib import Path
 
 class facebookPosts(MainTemplate):
 
-    def parseText(self,data):
-        my_file = Path("static/trainingText.txt")
-        if my_file.is_file():
-            try:
-                os.remove("static/trainingText.txt")
-            except OSError:
-                pass
+    # writing the data to a textfile with the currentUserNumber.
+    def parseText(self,data,userNumber):
         data = data['x']
-        with open('static/trainingText.txt', 'a') as fbPostFile:
+        with open("static/trainingText"+str(userNumber)+".txt", 'a') as fbPostFile:
             for post in data:
                 f_path = post + "\n"
                 fbPostFile.write(post)
